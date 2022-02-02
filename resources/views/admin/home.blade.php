@@ -15,6 +15,7 @@
                     @endif
 
                     Area Admin 
+                    <p>Ciao {{$user->name}}</p>
                 </div>
             </div>
         </div>
