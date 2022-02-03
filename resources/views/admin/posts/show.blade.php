@@ -8,7 +8,7 @@
     <p> {{$post->content}} </p>
     <a href=" {{route('admin.posts.index')}} ">Torna all'elenco</a>
 
-    <div class="p-4"><a class="btn-success p-2 rounded" href=" # ">Edit</a></div>
+    <div class="p-4"><a class="btn-success p-2 rounded" href=" {{route('admin.posts.edit', $post)}} ">Edit</a></div>
     
    
 
