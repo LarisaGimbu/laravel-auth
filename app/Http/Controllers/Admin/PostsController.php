@@ -37,6 +37,7 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate($this->validationData(), $this->validationError());
         $data = $request->all();
         $new_post = new Post();
         $new_post->fill($data);
@@ -81,6 +82,7 @@ class PostsController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        $request->validate($this->validationData(), $this->validationError());
         $data = $request->all();
         $data['slug'] = Post::generateSlug($data['title']);
         $post->update($data);
@@ -99,5 +101,22 @@ class PostsController extends Controller
         $post->delete();
 
         return redirect()->route('admin.posts.index');
+    }
+
+    private function validationData(){
+        return [
+            'title'=>"required|max:50|min:2",
+            'content'=>"required|min:5",
+        ];
+    }
+
+    private function validationError(){
+        return [
+            'title.required'=> "Il titolo è obbligatorio",
+            'title.max'=> "Il titolo può avere massimo :max caratteri",
+            'title.min'=> "Il titolo deve avere al minimo :min caratteri",
+            'content.required'=> "Il contenuto è obbligatorio",
+            'content.min'=> "Il contenuto deve avere al meno :min caratteri"
+        ];
     }
 }
