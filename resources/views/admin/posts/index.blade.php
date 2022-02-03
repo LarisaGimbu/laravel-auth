@@ -22,6 +22,14 @@
           <td>{{$post->content}}</td>
           <td> {{$post->slug}} </td>
           <td><a class="btn-warning p-2 rounded d-flex align-items-center" href=" {{route('admin.posts.show', $post)}} ">Show</a> </td>
+          <td>
+            <form action=" {{route('admin.posts.destroy', $post)}} " method="POST" 
+            onsubmit=" return confirm('Confermi di voler eliminare il post {{$post->title}}? ')" >
+              @csrf
+              @method('DELETE')
+              <button class="btn btn-danger p-2 rounded" type="submit">Delete</button>
+            </form>
+          </td>
         </tr>
         @endforeach
         
