@@ -43,7 +43,7 @@ class PostsController extends Controller
         $new_post->slug = Post::generateSlug($new_post->title);
         $new_post->save();
 
-        return redirect()->route('admin.posts.index', $new_post);
+        return redirect()->route('admin.posts.show', $new_post);
     }
 
     /**
@@ -54,7 +54,9 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::find($id);
+
+        return view('admin.posts.show', compact('post'));
     }
 
     /**

@@ -11,6 +11,7 @@
           <th scope="col">Title</th>
           <th scope="col">Content</th>
           <th scope="col">Slug</th>
+          <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -20,6 +21,7 @@
           <td>{{$post->title}}</td>
           <td>{{$post->content}}</td>
           <td> {{$post->slug}} </td>
+          <td><a class="btn-warning p-2 rounded d-flex align-items-center" href=" {{route('admin.posts.show', $post)}} ">Show</a> </td>
         </tr>
         @endforeach
         
